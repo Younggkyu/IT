@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Created by http://cafe.naver.com/citrineframework
+	You can freely copy, distribute, modify for commercial or non-commercial purposes.
+-->
+<MOML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.applusform.com/xsd/moml_ui.xsd" version="1.1.1">
+
+	<FUNCTION id="signUpMove">
+		<CMD condition="userVariable.signUpPageValue == 'false'" cmd="userVariable.signUpPageValue = 'true', animation.show('backWindow', 'fade', '', 500, ''), animation.move('SignupPage', 0, 1230, 'easeOut7|backOut', 500, '')"
+			elseCmd="userVariable.signUpPageValue = 'false', animation.hide('backWindow', 'fade', '', 500, ''), animation.move('SignupPage', 0, -1230, 'easeOut3', 500, '')" />
+	</FUNCTION>
+
+	<FUNCTION id="btnAniTo">
+		<CMD cmd="animation.show('titleLogo', 'fade', '', 500, '')" />
+		<CMD cmd="animation.show('titleLabel', 'fade', '', 500, '')" />
+		<CMD cmd="animation.flyIn('faceBookBtn', 0, 500, faceBookBtn.width, faceBookBtn.height, 'backOut', 500, '')" delay="200" />
+		<CMD cmd="animation.flyIn('googleBtn', 0, 500, googleBtn.width, googleBtn.height, 'backOut', 500, '')" delay="600" />
+		<CMD cmd="animation.flyIn('mailBtn', 0, 500, mailBtn.width, mailBtn.height, 'backOut', 500, '')" delay="1000" />
+		<CMD cmd="animation.show('subTitleFirst', 'fade', '', 500, '')" delay="1200" />
+		<CMD cmd="animation.show('subTitleSecond', 'fade', '', 500, '')" delay="1200" />
+	</FUNCTION>
+
+	<CMD cmd="function.btnAniTo" />
+	<CMD cmd="userVariable.signUpPageValue  = 'false'" />
+
+	<UILAYOUT portrait="720,1230" landscape="720,1230">
+		<WINDOW id="mainPage" layout="0,0,720,1230" defaultImg="res/bg.png">
+			<IMAGE id="titleLogo" layout="327,50,80,80" defaultImg="res/ab_gogo_white_ic.png" visible="invisible" />
+			<LABEL id="titleLabel" layout="0,141,720,95" text="gogobot" fontSize="80" fontFace="res/roboto_bold.ttf" textAlign="center" minFontSize="-1" textColor="#ffffff" visible="invisible" />
+			<LABEL id="subTitleFirst" layout="0,866,720,65" text="Connect with" fontSize="50" fontFace="res/roboto_regular.ttf" textAlign="center" minFontSize="-1" textColor="#ffffff" visible="invisible" />
+			<LABEL id="subTitleSecond" layout="0,1142,720,65" text="Sign up later" fontSize="30" fontFace="res/roboto_regular.ttf" textAlign="center" minFontSize="-1" textColor="#ffffff" visible="invisible" />
+			<STYLEBUTTON id="faceBookBtn" layout="40,947,160,160" shape="circle" borderStyle="solid:3|#ffffff" defaultImg="#00ffffff" pressedImg="#66d00808" align="linear:vertical|center" visible="invisible" onClick="device.toastPopup('facebook')" >
+				<IMAGE layout="129,129" defaultImg="res/menu_facebook_button.png" />
+			</STYLEBUTTON>
+			<STYLEBUTTON id="googleBtn" layout="285,947,160,160" shape="circle" borderStyle="solid:3|#ffffff" defaultImg="#00ffffff" pressedImg="#66d00808" align="linear:vertical|center" visible="invisible" onClick="device.toastPopup('google')" >
+				<IMAGE layout="129,129" defaultImg="res/menu_google_button.png" />
+			</STYLEBUTTON>
+			<STYLEBUTTON id="mailBtn" layout="530,947,160,160" shape="circle" borderStyle="solid:3|#ffffff" defaultImg="#00ffffff" pressedImg="#66d00808" align="linear:vertical|center" visible="invisible" onClick="function.signUpMove">
+				<IMAGE layout="129,129" defaultImg="res/menu_email_button.png" />
+			</STYLEBUTTON>
+		</WINDOW>
+		
+		<WINDOW id="backWindow" layout="0,0,720,1230" defaultImg="#90000000" visible="invisible" onClick="none" />
+		
+		<WINDOW id="SignupPage" layout="0,-1230,720,1230">
+			<BUTTON layout="620,30,60,60" defaultImg="res/icon_tabs_decline_x.png" onClick="function.signUpMove" />
+			<LABEL layout="0,230,720,95" text="Create an account" fontSize="50" fontFace="res/roboto_bold.ttf" textAlign="center" minFontSize="-1" textColor="#c8c8c8" />
+			<WINDOW layout="65,332,592,400" align="linear:vertical">
+				<EDIT layout="592,70" text="" placeholder="First Name" returnKeyType="next" onChange="" onReturnKey="" fontSize="30" textColor="#ffffff" fontStyle="bold" textAlign="vCenter" defaultImg="#80656666"	margin="0,20,0,0" language="english"/>
+				<EDIT layout="592,70" text="" placeholder="Last Name" returnKeyType="next" onChange="" onReturnKey="" fontSize="30" textColor="#ffffff" fontStyle="bold" textAlign="vCenter" defaultImg="#80656666"	margin="0,20,0,0" language="english"/>
+				<EDIT layout="592,70" text="" placeholder="Email" returnKeyType="next" onChange="" onReturnKey="" fontSize="30" textColor="#ffffff" fontStyle="bold" textAlign="vCenter" defaultImg="#80656666"	margin="0,20,0,0" language="english"/>
+				<EDIT layout="592,70" text="" placeholder="Password" textFormat="textPassword" returnKeyType="done" onChange="" onReturnKey="" fontSize="30" textColor="#ffffff" fontStyle="bold" textAlign="vCenter" defaultImg="#80656666" margin="0,20,0,0" language="english"/>
+			</WINDOW>
+			<STYLEBUTTON layout="65,734,592,90" shape="roundRect(10)" text="Sign up" fontFace="res/roboto_bold.ttf" fontSize="40" textAlign="center" textColor="#ffffff" defaultImg="#ec327d"
+				onClick="device.toastPopup('Sign up')" />
+			<STYLEBUTTON layout="65,850,592,90" shape="roundRect(10)" text="Already have an Account?" fontFace="res/roboto_bold.ttf" fontSize="40" textAlign="center" textColor="#ec327d"
+				borderStyle="solid:3|#ec327d" defaultImg="#00ec327d" onClick="device.toastPopup('Already have an Account?')" />
+		</WINDOW>
+	</UILAYOUT>
+</MOML>
